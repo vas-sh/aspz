@@ -2,9 +2,17 @@
 #include <string.h>
 
 int main(int argc, char *argv[]) {
-    if (argc != 3) return 1;
+    if (argc != 3) {
+        printf("Usage: %s word file.txt\n", argv[0]);
+        return 1;
+    }
 
     FILE *f = fopen(argv[2], "r");
+    if (f == NULL) {
+        printf("Cannot open file %s\n", argv[2]);
+        return 1;
+    }
+
     char line[256];
 
     while (fgets(line, sizeof(line), f)) {
